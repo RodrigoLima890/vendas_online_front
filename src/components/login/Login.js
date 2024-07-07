@@ -1,13 +1,15 @@
 import React, { useRef } from 'react';
-import { LoginTitle, ContainerBody, ContainerLogin, Input, Button, Label } from './LoginComponents';
+import { LoginTitle, ContainerBody, ContainerLogin, Input, Button, Label } from '../../styles/LoginComponents';
+import { setCookie } from '../../utils/cookieUtils';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const inputSenha = useRef('');
   const inputEmail = useRef('');
 
   async function submitLogin(event) {
-    event.preventDefault(); // Previne o comportamento padrão do formulário
+    event.preventDefault();
 
     const email = inputEmail.current.value;
     const senha = inputSenha.current.value;
@@ -17,10 +19,15 @@ function Login() {
         email: email,
         password: senha,
       });
-      console.log(response);
+      const accessToken  = response.data.access_token;
+
+      setCookie('token', accessToken, 1,'/')
+      const navigate = new useNavigate()
+      navigate("/teste")
     } catch (e) {
       const responseErro = JSON.parse(e.request.responseText);
-      alert(responseErro.message)
+      const spanMsg = document.getElementById('message');
+      spanMsg.innerHTML = "<p style='color:red;'>"+responseErro.message+"<p/>";
     }
   }
 
@@ -32,6 +39,7 @@ function Login() {
         <Input type="text" ref={inputEmail} id='email' name="Email" placeholder='Seu Email' />
         <Label htmlFor='senha'>Senha</Label>
         <Input type="password" ref={inputSenha} id='senha' name="password" placeholder='Sua Senha' />
+        <span id='message'></span>
         <Button type="submit" onClick={submitLogin}>Entrar</Button> {/* Mantenha o tipo de botão como 'submit' */}
       </ContainerLogin>
     </ContainerBody>

@@ -32,7 +32,7 @@ export const Input = styled.input`
     outline:none;
     border-radius:10px;
     width:90%;
-    height:30px;
+    height:40px;
     padding:4px;
     margin-bottom:10px;
     padding-left:20px;
@@ -40,21 +40,22 @@ export const Input = styled.input`
 `
 
 export const Label = styled.label`
-    font-size:1em;
+    font-size:1.1em;
     font-weight:bold;
     padding:3px;
-    margin-bottom:4px;
+    margin-bottom:5px;
 
 `
 
 export const Button = styled.button`
-    width: 110px;
-    padding:10px;
+    width: 120px;
+    padding:15px;
+    height:45px;
     background-color:#5159DB;
     color:#ffffff;
     border:none;
     margin:12px auto;
-    font-size:0.8em;
+    font-size:1em;
     font-weight:bold;
     cursor: pointer;
     border-radius:5px;

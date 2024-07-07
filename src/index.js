@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import Login from './login/Login';
+import Login from './components/login/Login';
 import GlobalStyle from './GlobalStyle';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 
